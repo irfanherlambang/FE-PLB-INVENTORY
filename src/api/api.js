@@ -44,6 +44,9 @@ const api = {
     dokumen: {
       search: (params) => axiosInstance.get(`/inventory/dokumen/search?${params}`),
       lihatPengajuan: (params) => axiosInstance.get(`/inventory/dokumen/lihatpengajuan/${params}`),
+      history: (params) => axiosInstance.get(`/inventory/dokumen/history/${params}`),
+      respondoc: (params) => axiosInstance.get(`/inventory/dokumen/respondoc/${params}`),
+
     }
   },
 

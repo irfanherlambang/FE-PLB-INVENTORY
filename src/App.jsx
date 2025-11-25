@@ -17,6 +17,7 @@ import InventoryTagihan from "./pages/inventory/Tagihan";
 // import InventoryMutasi from "./pages/inventory/Mutasi";
 import Configuration from "./pages/settings/Configuration";
 import User from "./pages/settings/User";
+import RiwayatOrder from "./pages/inventory/dokumen/History";
 
 
 
@@ -40,6 +41,7 @@ export default function App() {
             {/* <Route path="/inventory/mutasi" element={<InventoryMutasi />} /> */}
             <Route path="/admin/configuration" element={<Configuration />} />
             <Route path="/admin/user" element={<User />} />
+            <Route path="/inventory/dokumen/history/:orderId" element={<RiwayatOrder />} />
           </Route>
           <Route path="*" element={<Login />} />
         </Routes>

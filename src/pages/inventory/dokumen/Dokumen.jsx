@@ -38,6 +38,7 @@ import {
   Refresh as RefreshIcon,
   Search as SearchIcon,
   Visibility as ViewIcon,
+  AccessTime,
   Edit as EditIcon,
   Delete as DeleteIcon,
   MoreVert
@@ -72,6 +73,13 @@ const Dokumen = () => {
   const handleLihatPengajuan = () => {
     if (selectedRow) {
       navigate(`/inventory/dokumen/${selectedRow.id}`);
+    }
+    handleMenuClose();
+  };
+
+  const handleRiwayatOrder = () => {
+    if (selectedRow) {
+      navigate(`/inventory/dokumen/history/${selectedRow.id}`);
     }
     handleMenuClose();
   };
@@ -636,6 +644,14 @@ const Dokumen = () => {
           </ListItemIcon>
           <ListItemText>Lihat Pengajuan</ListItemText>
         </MenuItem>
+
+        <MenuItem onClick={handleRiwayatOrder}>
+          <ListItemIcon>
+            <AccessTime fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Riwayat Order</ListItemText>
+        </MenuItem>
+
         {/* <Divider />
         <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
           <ListItemIcon>
