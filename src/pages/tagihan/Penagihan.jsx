@@ -285,7 +285,7 @@ export default function BrowseLaporan() {
                 )}
 
                 {/* === PAGINATION === */}
-                {totalPages > 1 && (
+                {totalPages >= 1 && (
                     <Stack
                         direction="row"
                         spacing={1}
