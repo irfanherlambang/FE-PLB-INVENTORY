@@ -37,6 +37,14 @@ const api = {
     laporan_mutasi: {
       search: (params) => axiosInstance.get(`/browse/laporanMutasi/search?${params}`),
       download: (params) => axiosInstance.get(`/browse/laporanMutasi/download?${params}`, {responseType: "blob"}),
+    },
+    laporan_tagihan:{
+      search: (params) => axiosInstance.get(`/tagihan/laporanTagihan/search?${params}`),
+      invoice: (params) => axiosInstance.get(`/tagihan/laporanTagihan/invoice?${params}`, {responseType: "blob"}),
+    },
+    laporan_penagihan: {
+      search: (params) => axiosInstance.get(`/tagihan/laporanPenagihan/search?${params}`),
+      download: (params) => axiosInstance.get(`/tagihan/laporanPenagihan/download?${params}`, {responseType: "blob"}),
     }
 
   },
