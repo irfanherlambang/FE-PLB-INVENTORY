@@ -14,6 +14,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ForgotPasswordDialog from "./ForgotPasswordDialog";
 import api from "../api/api";
 
+import { GoogleLogin } from '@react-oauth/google';
+
 export default function LoginForm({ onLogin, setIsLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +46,33 @@ export default function LoginForm({ onLogin, setIsLogin }) {
       setError(err.response?.data?.message || "Terjadi kesalahan saat login.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleResponse = async (response) => {
+    try {
+      const res = await fetch("http://localhost:801/user/google-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: response.credential,
+        }),
+      });
+
+      console.log("TOKEN:", response.credential);
+
+      const result = await res.json();
+
+      if (result.kode === 200) {
+        onLogin(result.data); 
+      } else {
+        console.log("Login gagal:", result.message);
+      }
+
+    } catch (error) {
+      console.error("Google login error:", error);
     }
   };
 
@@ -97,6 +126,11 @@ export default function LoginForm({ onLogin, setIsLogin }) {
       >
         {loading ? <CircularProgress size={24} color="inherit" /> : "Sign In"}
       </Button>
+
+      <GoogleLogin
+        onSuccess={handleGoogleResponse}
+        onError={() => console.log("Google Login Failed")}
+      />
 
       <Grid container justifyContent="space-between" sx={{ mt: 2 }}>
         <Grid>
